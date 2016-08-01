@@ -245,12 +245,23 @@ window.addEventListener("load",function() {
 		logout.style.color = "#000";
 	});
 	logout.addEventListener("mousedown",function() {
-		var args = {};
+		var csrf_cookie = localStorage.getItem("csrf-cookie");
+		var args = {csrf_cookie:csrf_cookie};
 		Import({url:"/json.logout",method:"get",json:true,data:args})
 			.done(function(data) {
-				localStorage.setItem("csrf-cookie",null);
-				delete localStorage["csrf-cookie"];
+				if(data.result) {
+					localStorage.setItem("csrf-cookie",null);
+					delete localStorage["csrf-cookie"];
+					localStorage.setItem("username",null);
+					document.getElementById("lblErrorMessage").style.display = "none";
+					
+				} else {
+					var error = document.getElementById("lblErrorMessage");
+					error.innerHTML = data.message;
+					error.style.display = "";
+				}
 				logout.style.display = "none";
+				console.log("logout");
 				login_screen();
 			})
 			.fail(function(error) {
@@ -263,14 +274,19 @@ window.addEventListener("load",function() {
 		var login_username = document.getElementById("login_username");
 		var login_password = document.getElementById("login_password");
 		var login_btn =  document.getElementById("login_btn");
+		login_btn.style.position = "relative";
 		login_btn.style.cursor = "pointer";
 		login_btn.style.border = "solid 1px #000";
+		login_btn.style.borderTop = "solid 5px #000";
+		login_btn.style.borderBottom = "solid 5px #000";
+		
 		login_btn.style.backgroundColor = "#000";
 		login_btn.style.color = "#fff";
 		
 		login_username.value = "";
 		login_password.value = "";
 		function submit_login() {
+			var username = login_username.value;
 			var args = {
 				username : login_username.value,
 				password : login_password.value
@@ -280,14 +296,23 @@ window.addEventListener("load",function() {
 					//alert(JSON.stringify(data));
 					if(data.result) {
 						localStorage.setItem("csrf-cookie",data.csrf_cookie);
+						localStorage.setItem("username",username);
 						document.getElementById("panelLogin").style.display = "none";
 						logout.style.display = "";
+						document.getElementById("lblErrorMessage").style.display = "none";
+						
+					} else {
+						var error = document.getElementById("lblErrorMessage");
+						error.innerHTML = data.message;
+						error.style.display = "";
 					}
 					login_username.value = "";
 					login_password.value = "";
 				})
 				.fail(function(error) {
-					alert("error:",error);
+					var error = document.getElementById("lblErrorMessage");
+					error.innerHTML = error.message;
+					error.style.display = "";
 				})
 				.send();
 		}
@@ -304,8 +329,8 @@ window.addEventListener("load",function() {
 			login_btn.style.color = "#000";
 		});
 		login_btn.addEventListener("mouseout",function() {
-			login_btn.style.borderTop = "solid 1px #000";
-			login_btn.style.borderBottom = "solid 1px #000";
+			login_btn.style.borderTop = "solid 5px #000";
+			login_btn.style.borderBottom = "solid 5px #000";
 			login_btn.style.backgroundColor = "#000";
 			login_btn.style.color = "#fff";
 		});
@@ -321,9 +346,12 @@ window.addEventListener("load",function() {
 		var register_btn = document.getElementById("register_btn");
 		register_btn.style.cursor = "pointer";
 		register_btn.style.border = "solid 1px #000";
+		register_btn.style.borderTop = "solid 5px #000";
+		register_btn.style.borderBottom = "solid 5px #000";
 		register_btn.style.backgroundColor = "#000";
 		register_btn.style.color = "#fff";
 		function submit_register() {
+			var username = register_username.value;
 			if(register_password1.value == register_password2.value) {
 				var args = {
 					username : register_username.value,
@@ -335,8 +363,14 @@ window.addEventListener("load",function() {
 					.done(function(data) {
 						if(data.result) {
 							localStorage.setItem("csrf-cookie",data.csrf_cookie);
+							localStorage.setItem("username",username);
 							document.getElementById("panelLogin").style.display = "none";
-							logout.style.display = "";
+							document.getElementById("lblErrorMessage").style.display = "none";
+							
+						} else {
+							var error = document.getElementById("lblErrorMessage");
+							error.innerHTML = data.message;
+							error.style.display = "";
 						}
 						register_username.value = "";
 						register_password1.value = "";
@@ -344,11 +378,18 @@ window.addEventListener("load",function() {
 						register_token.value = "";
 					})
 					.fail(function(error) {
-						alert("error:",error);
+						var error = document.getElementById("lblErrorMessage");
+						error.innerHTML = error.message;
+						error.style.display = "";
 					})
 					.send();
 			} else {
-				alert("please, retype password correctly.");
+				var error = document.getElementById("lblErrorMessage");
+				error.innerHTML = "please, retype password correctly.";
+				error.style.display = "";
+				register_password1.value = "";
+				register_password2.value = "";
+				//alert("please, retype password correctly.");
 			}
 		}
 		
@@ -375,8 +416,8 @@ window.addEventListener("load",function() {
 			register_btn.style.color = "#000";
 		});
 		register_btn.addEventListener("mouseout",function() {
-			register_btn.style.borderTop = "solid 1px #000";
-			register_btn.style.borderBottom = "solid 1px #000";
+			register_btn.style.borderTop = "solid 5px #000";
+			register_btn.style.borderBottom = "solid 5px #000";
 			register_btn.style.backgroundColor = "#000";
 			register_btn.style.color = "#fff";
 		});

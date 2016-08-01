@@ -14,13 +14,31 @@ function guid() {
 }
 
 function generateTokens(n) {
-	var list = [];
+
+	if(!fs.existsSync("users")) fs.mkdirSync("users");
+	if(!fs.existsSync("users"+path.sep+"info.json")) fs.writeFileSync("users"+path.sep+"info.json","{}");
+	var users_info = fs.readFileSync("users"+path.sep+"info.json");
+	
+	var list = {};
 	for(var x = 0; x < n;x++) {
-		list.push(guid());
+		var id = guid();
+		while(id in list) id = guid();
+		var next = false;
+		for(var username in users_info) {
+			if(id == users_info[username].token) {
+				next = true;
+				break;
+			}
+		}
+		if(next) {
+			x--;
+			continue;
+		}
+		list[id] = {};
 	}
 	fs.writeFileSync("tokens.json",JSON.stringify(list));
 }
-//generateTokens(64);
+generateTokens(64);
 
 function createUserList() {
 	fs.writeFileSync("users.json",JSON.stringify({}));
@@ -70,21 +88,23 @@ function Server(port,host,timeout,client_script) {
 						
 						// start panel
 						"<div id=\"panelLogin\" style=\"position:absolute;left:10px;top:40px;border:solid 1px #000;padding:10px;background-color:#ec3;\">"+
-						// login interface
-						"<table>"+
-						"<tr><td align=\"right\">usuario : </td><td><input id=\"login_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td align=\"right\">senha : </td><td><input id=\"login_password\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td></td><td id=\"login_btn\" style=\"text-align:center;\">acessar</td></tr>"+
-						"</table>"+
-						// register interface
-						"<table>"+
-						"<tr><td align=\"right\">usuario : </td><td><input id=\"register_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td align=\"right\">senha : </td><td><input id=\"register_password1\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td align=\"right\">senha : </td><td><input id=\"register_password2\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td align=\"right\">token : </td><td><input id=\"register_token\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-						"<tr><td></td><td id=\"register_btn\" style=\"text-align:center;\">registrar</td></tr>"+
-						"</table>"+
+							// login interface
+							"<table>"+
+								"<tr><td align=\"right\" valign=\"top\">usuario : </td><td valign=\"top\"><input id=\"login_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
+								"<tr><td align=\"right\" valign=\"top\">senha : </td><td valign=\"top\"><input id=\"login_password\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/><br/><a style=\"font-size:13px;\">esqueceu a senha?</a></td></tr>"+
+								"<tr><td></td><td id=\"login_btn\" style=\"text-align:center;\">acessar</td></tr>"+
+							"</table>"+
+							// register interface
+							"<table>"+
+								"<tr><td align=\"right\">usuario : </td><td><input id=\"register_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
+								"<tr><td align=\"right\">senha : </td><td><input id=\"register_password1\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
+								"<tr><td align=\"right\">senha : </td><td><input id=\"register_password2\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
+								"<tr><td align=\"right\">token : </td><td><input id=\"register_token\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
+								"<tr><td></td><td id=\"register_btn\" style=\"text-align:center;\">registrar</td></tr>"+
+							"</table>"+
+							"<div id=\"lblErrorMessage\" style=\"border:solid 1px #f00;background-color:#fff;color:#000;display:none;padding:5px;\"></div>"+
 						"</div>"+
+						
 						
 						// logout interface
 						"<div id=\"btnLogout\" style=\"position:absolute;top:10px;\">"+
@@ -127,55 +147,80 @@ function Server(port,host,timeout,client_script) {
 			} else if(container.path == "/json.login") {
 				response.writeHead(200, {"content-type": "application/json","connection":"close"});
 				if(!fs.existsSync("users")) {
-					response.write(
-						"{\"result\":false}"
-					);
+					response.write("{\"result\":false}");
 					fs.mkdirSync("users");
 					fs.writeFileSync("users"+path.sep+"info.json","{}");
-				} else if("username" in container.get && "password" in container.get) {
-					
-					if(container.get.username == "root" && container.get.password == "pass") {
-						// save csrf for this session
-						
-						
-						var id = guid()
-						if(fs.existsSync("csrf.json")) {
-							var csrf = JSON.parse( fs.readFileSync("csrf.json") );		
-							csrf.list.push(id);
-							fs.writeFileSync("csrf.json",JSON.stringify(csrf));
-						} else {
-							fs.writeFileSync("csrf.json","{\"list\":[\""+id+"\"]}");
-						}
-						response.write(
-							"{\"result\":true,\"csrf_cookie\":\""+id+"\"}"
-						);
+				} 
+				
+				if("username" in container.get && "password" in container.get) { // relogin (new session)
+					// get users/info.json
+					var users = JSON.parse( fs.readFileSync("users"+path.sep + "info.json", "utf8") );
+					if( container.get.username in users && users[ container.get.username ].password == container.get.password ) {
+						var id = guid();
+						var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
+						if(id in hash) while(id in hash) id = guid();
+						hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]}
+						fs.writeFileSync("session.json",JSON.stringify(hash));
+						response.write("{\"result\":true,\"csrf_cookie\":\""+id+"\"}");
 					} else {
-						response.write(
-							"{\"result\":false}"
-						);
+						response.write("{\"result\":false,\"message\":\"incorrect username or password.\"}");
 					}
-				} else if("csrf_cookie" in container.get) {
-					// load list of csrf if not loaded
-					var csrf = JSON.parse( fs.readFileSync("csrf.json") );
-					var check = false;
-					for(var x = 0; x < csrf.list.length;x++) {
-						if(csrf.list[x] == container.get.csrf_cookie) {
-							check = true;
+					
+				} else if("csrf_cookie" in container.get) { // auto relogin (reuse session)
+					// relogin
+					
+					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
+					if(hash==null) {
+						response.write("{\"result\":false,\"message\":\"server internal error(2).\"}");
+					} else {
+						if(container.get.csrf_cookie in hash) {
+							hash[ container.get.csrf_cookie ].log.push(["rein",new Date()]);
 							response.write("{\"result\":true}");
-							break;
+							fs.writeFileSync("session.json",JSON.stringify(hash));
+						} else {
+							response.write("{\"result\":false}");
 						}
-					}
-					if(!check) {
-						response.write(
-							"{\"result\":false}"
-						);
 					}
 				}
 				response.end();
 			} else if(container.path == "/json.logout") {
-				response.writeHead(200, {"content-type": "application/json","connection":"close"});
-				response.write("{\"result\":true}");
-				response.end();
+				if("csrf_cookie" in container.get) {
+					// csrf_cookie -> username -> log out
+					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
+					if(hash==null) {
+						response.writeHead(200, {"content-type": "application/json","connection":"close"});
+						response.write("{\"result\":false,\"message\":\"server internal error(1).\"}");
+						response.end();
+					} else {
+						var logout_date = new Date();
+						if(container.get.csrf_cookie in hash) {
+							hash[ container.get.csrf_cookie ].log.push(["out",logout_date]);
+						}
+						// transfer log from session to history in user, using logout date
+						console.log("HASH:" + JSON.stringify(hash) + " || " + container.get.csrf_cookie );
+						if(fs.existsSync(
+							"users"+path.sep
+							+hash[container.get.csrf_cookie ].username+path.sep
+							+"history.json"
+						)) {
+							var history = JSON.parse( fs.readFileSync("users"+path.sep+hash[container.get.csrf_cookie ].username+path.sep+"history.json") );
+							history[ logout_date.valueOf() ] = hash[ container.get.csrf_cookie ].log;
+							fs.writeFileSync("users"+path.sep+hash[container.get.csrf_cookie ].username+path.sep+"history.json",JSON.stringify(history));
+						}
+						// remove session
+						delete hash[container.get.csrf_cookie];
+						fs.writeFileSync("session.json",JSON.stringify(hash));
+						
+						response.writeHead(200, {"content-type": "application/json","connection":"close"});
+						response.write("{\"result\":true}");
+						response.end();
+						
+					}
+				} else {
+					response.writeHead(200, {"content-type": "application/json","connection":"close"});
+					response.write("{\"result\":false,\"message\":\"wrong cookie.\"}");
+					response.end();
+				}
 			} else if(container.path == "/json.register") {
 				console.log(JSON.stringify(container.get));
 				response.writeHead(200, {"content-type": "application/json","connection":"close"});
@@ -184,23 +229,16 @@ function Server(port,host,timeout,client_script) {
 					console.log("FIND FOR ",container.get.token);
 					var tokens = JSON.parse( fs.readFileSync("tokens.json") );
 					var check = false;
-					var sel = -1;
-					for(var x = 0; x < tokens.length;x++) {
-						if(tokens[x] == container.get.token) {
-							sel = x;
-							check = true;
-							break;
-						}
-					}
+					if(container.get.token in tokens) check = true;
 					if(check) {
 						console.log("FOUND TOKEN");
-						tokens.splice(sel,1);
-						fs.writeFileSync("tokens.json",JSON.stringify(tokens));
-						if(!fs.exists("users")) {
-							fs.mkdirSync("users");
-							fs.writeFileSync("users"+path.sep+"info.json","{}");
-						}
+						
+						if(!fs.existsSync("users")) fs.mkdirSync("users");
+						if(!fs.existsSync("users"+path.sep+"info.json")) fs.writeFileSync("users"+path.sep+"info.json","{}");
+						
 						var info = JSON.parse( fs.readFileSync("users"+path.sep+"info.json") );
+						
+						// recheck of token reuse, do not allow duplicates
 						var check = false;
 						for(var username in info) {
 							if(info[username].token == container.get.token) {
@@ -208,34 +246,41 @@ function Server(port,host,timeout,client_script) {
 								console.log("TOKEN HAS ALREADY BEEM USED.");
 								response.write("{\"result\":false,\"message\":\"token has already been used.\"}");
 								response.end();
+								delete tokens[ container.get.token ];
+								fs.writeFileSync("tokens.json",JSON.stringify(tokens));
 								return;
 							}
 						}
+						
 						if(!check && container.get.username in info) {
 							console.log("USERNAME HAS ALREADY BEEN TAKEN.");
 							response.write("{\"result\":false,\"message\":\"username has already been taken.\"}");
-							response.end();
-							return;
 						} else {
 							var id = guid();
+							var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
+							if(id in hash) while(id in hash) id = guid();
+							hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]};
+							fs.writeFileSync("session.json",JSON.stringify(hash));
 							info[container.get.username] = { 
 								token : container.get.token, 
-								password : container.get.password, 
-								last_ids : [[id,new Date()]] 
+								password : container.get.password
 							};
 							fs.writeFileSync("users"+path.sep+"info.json",JSON.stringify(info));
-							if(fs.existsSync("csrf.json")) {
-								var csrf = JSON.parse( fs.readFileSync("csrf.json") );		
-								csrf.list.push(id);
-								fs.writeFileSync("csrf.json",JSON.stringify(csrf));
-							} else {
-								fs.writeFileSync("csrf.json","{\"list\":[\""+id+"\"]}");
-							}
 							console.log("REGISTERED AND LOGGED AS " + id);
+							if(!fs.existsSync("users"+path.sep+container.get.username)) fs.mkdirSync("users"+path.sep+container.get.username);
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"history.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"history.json","{}");
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"words.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"words.json","{}");
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"sentences.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"sentences.json","{}");
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"texts.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"texts.json","{}");
 							response.write("{\"result\":true,\"csrf_cookie\":\""+id+"\"}");
-							response.end();
-							return;
 						}
+						
+						response.end();
+						delete tokens[ container.get.token ];
+						fs.writeFileSync("tokens.json",JSON.stringify(tokens));
+						
+						return;
+						
 					} else {
 						console.log("TOKEN NOT FOUND");
 						response.write("{\"result\":false,\"message\":\"token not found.\"}");
@@ -330,7 +375,11 @@ function Server(port,host,timeout,client_script) {
 		console.log("err:",err);
 	});
 	this.services = setInterval(function() {
-		
+		if(self.timeout>0) {
+			if( (new Date()).valueOf() > (self.timer.valueOf() + self.timeout) ) {
+				self.stop();
+			}
+		}
 	},10000);
 }
 
@@ -349,17 +398,7 @@ Server.prototype.stop = function() {
 		if(self.debugFlag) console.log("[system] server " + self.host + " at port " + self.port + " stoped.");
 	});
 	clearInterval(this.services);
-	fs.appendFileSync("log.txt","[down] " + this.host + ":" + this.port + " -> " + new Date().toISOString() +"\r\n");
-}
-
-function ServerBid(port,host,timeout) {
-	var server = new Server(port,host,timeout);
-	server.debug(true);
-	server.start();
-	setTimeout(function() {
-		console.log("!");
-		server.stop();
-	},timeout);
+	fs.appendFileSync("log.txt","[-] " + this.host + ":" + this.port + " -> " + new Date().toISOString() +"\r\n");
 }
 
 var server = new Server(80,"0.0.0.0",-1,"./client/0x00.js");
