@@ -110,6 +110,28 @@ function Server(port,host,timeout,client_script) {
 						"<div id=\"btnLogout\" style=\"position:absolute;top:10px;\">"+
 						"logout"+
 						"</div>"+
+						
+						// terminal interface
+						"<div id=\"terminal\" style=\"display:none;position:absolute;left:10px;top:40px;padding:10px;\">"+
+							"<div style=\"position:relative;width:780px;height:30px;border:solid 1px #000;padding:5px;background-color:#eee;\">"+
+								"<input type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
+							"</div>"+
+						"</div>"+
+						
+						// [system]
+						
+							// add user user2 ( adicionar contato )
+						
+							// find user where word + exists
+							// find user where sentence add user exists
+							
+							// remove user ( remover contato )
+						
+							// enviar mensage para contato
+						
+							// use user user1
+						
+												
 						// add word ( adicionar topico )
 						
 						// list words ( listar topicos )
@@ -269,6 +291,13 @@ function Server(port,host,timeout,client_script) {
 							console.log("REGISTERED AND LOGGED AS " + id);
 							if(!fs.existsSync("users"+path.sep+container.get.username)) fs.mkdirSync("users"+path.sep+container.get.username);
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"history.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"history.json","{}");
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"parser.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"parser.json",
+								"{"+
+									"\"main\" : \"main\","+
+									"\"stack\" : [{}]"
+								"}"
+							);
+							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"words.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"base.json","{}");
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"words.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"words.json","{}");
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"sentences.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"sentences.json","{}");
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"texts.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"texts.json","{}");
@@ -295,6 +324,21 @@ function Server(port,host,timeout,client_script) {
 				}
 			} else if(container.path == "/json.login_remember") {
 			
+			} else if(container.path == "/json.parser") {
+				
+				if( "query" in container.get && "csrf_cookie" in container.get) {
+					/*
+					var stack = JSON.parse( fs.readFileSync("users"+path.sep+container.get.username+path.sep+"parser.json") );
+					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
+					if(hash==null) {
+					
+					} else {
+					
+					}
+					TODO:
+						cache session
+					*/
+				}
 			}
 		} else {
 			response.writeHead(500, {"content-type": "text/html","connection":"close"});

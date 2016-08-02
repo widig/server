@@ -236,6 +236,8 @@ window.addEventListener("load",function() {
 	var logout = document.getElementById("btnLogout");
 	logout.style.display = "none";
 	logout.style.left = "800px";
+	logout.style.padding = "10px";
+	logout.style.cursor = "pointer";
 	logout.addEventListener("mouseover",function() {
 		logout.style.backgroundColor = "#000";
 		logout.style.color = "#fff";
@@ -254,7 +256,7 @@ window.addEventListener("load",function() {
 					delete localStorage["csrf-cookie"];
 					localStorage.setItem("username",null);
 					document.getElementById("lblErrorMessage").style.display = "none";
-					
+					unload_logout();
 				} else {
 					var error = document.getElementById("lblErrorMessage");
 					error.innerHTML = data.message;
@@ -268,7 +270,21 @@ window.addEventListener("load",function() {
 			})
 			.send();
 	});
-	
+	function unload_logout() {
+		logout.style.display = "none";
+		unload_terminal();
+	}
+	function load_terminal() {
+		var terminal = document.getElementById("terminal");
+		terminal.style.display = "";
+		terminal.style.border = "1px solid #000";
+		terminal.style.width = "800px";
+		terminal.style.height = "640px";
+	}
+	function unload_terminal() {
+		var terminal = document.getElementById("terminal");
+		terminal.style.display = "none";
+	}
 	function login_screen() {
 		document.getElementById("panelLogin").style.display = "";
 		var login_username = document.getElementById("login_username");
@@ -298,9 +314,9 @@ window.addEventListener("load",function() {
 						localStorage.setItem("csrf-cookie",data.csrf_cookie);
 						localStorage.setItem("username",username);
 						document.getElementById("panelLogin").style.display = "none";
-						logout.style.display = "";
 						document.getElementById("lblErrorMessage").style.display = "none";
-						
+						load_terminal();
+						logout.style.display = "";
 					} else {
 						var error = document.getElementById("lblErrorMessage");
 						error.innerHTML = data.message;
@@ -366,7 +382,8 @@ window.addEventListener("load",function() {
 							localStorage.setItem("username",username);
 							document.getElementById("panelLogin").style.display = "none";
 							document.getElementById("lblErrorMessage").style.display = "none";
-							
+							logout.style.display = "";
+							load_terminal();
 						} else {
 							var error = document.getElementById("lblErrorMessage");
 							error.innerHTML = data.message;
@@ -435,6 +452,7 @@ window.addEventListener("load",function() {
 				// if fail to authenticate then load login screen
 				if(data.result) {
 					document.getElementById("panelLogin").style.display = "none";
+					load_terminal();
 					logout.style.display = "";
 				} else {
 					login_screen();

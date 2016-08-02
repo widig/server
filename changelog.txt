@@ -1,0 +1,28 @@
+server.js
+
+changelog
+----------------------------------------------------------------------------------------------------
+
+v 0.02
+
+	[user level 2 || -1 -> auto add_contact]
+		
+		json.add_base "abcdefghij"
+		
+		json.add_contact
+			add user
+		json.remove_contact
+			remove user
+		json.find_contact
+			find user
+		json.select_contact
+			use user -> load user word list, sentence list
+			user [root] -> add word refer to root
+		json.add_word
+			add word
+
+v 0.01
+
+	json.login
+	json.logout
+	json.register
