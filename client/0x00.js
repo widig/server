@@ -520,7 +520,7 @@ Hash = {
 		return { result : true, data : __kernel_hash.hex() };
 	}
 }
-
+console.log(" ok" );
 /**
 *
 *  Base64 encode / decode

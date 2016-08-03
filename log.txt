@@ -17,3 +17,68 @@
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"bacb16-559-1e5-ea0-943d4e02d"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-03T12:30:27.652Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:30:29.023Z
+[-] 0.0.0.0:80 -> 2016-08-03T12:34:35.833Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:34:36.806Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"bacb16-559-1e5-ea0-943d4e02d"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"bacb16-559-1e5-ea0-943d4e02d"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"084e0e-658-df0-94a-f9ea5634"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"f18076-12b-683-25f-91071774e"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[+] 0.0.0.0:80 -> 2016-08-03T12:40:14.547Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"e35e4-b46-5e1-9e6-66ef92ed7"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"e35e4-b46-5e1-9e6-66ef92ed7"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"f59dbe-cb2-7a4-cdb-189c4642"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[-] 0.0.0.0:80 -> 2016-08-03T12:41:41.973Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:41:42.601Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"e78d3d718b7681d5fddcdfeb18a55895828bbced7f64f8ad8c91043a3c7c0d2be0d9cdfabd969f89d156e2b19d2e6b7c4056a08385ff7ab43995503048bfe9b2","token":"c31064-215-0b0-659-8ce08d7ab"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"83519b-616-029-38b-d5c2b80c8"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"e78d3d718b7681d5fddcdfeb18a55895828bbced7f64f8ad8c91043a3c7c0d2be0d9cdfabd969f89d156e2b19d2e6b7c4056a08385ff7ab43995503048bfe9b2"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"e78d3d718b7681d5fddcdfeb18a55895828bbced7f64f8ad8c91043a3c7c0d2be0d9cdfabd969f89d156e2b19d2e6b7c4056a08385ff7ab43995503048bfe9b2"}]
+[-] 0.0.0.0:80 -> 2016-08-03T12:42:45.523Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:42:46.141Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"f83bcb-5b0-61d-8b2-f28987ddb"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"f83bcb-5b0-61d-8b2-f28987ddb"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"af9285-fb2-02-a8b-6bc6f2e92"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"af9285-fb2-02-a8b-6bc6f2e92"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"5bcc1a-b13-90a-43c-fb2cdfee9"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[-] 0.0.0.0:80 -> 2016-08-03T12:46:18.265Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:46:19.167Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"7aea1-a14-41b-c53-4c0c658b"}]
+[-] 0.0.0.0:80 -> 2016-08-03T12:47:49.161Z
+[+] 0.0.0.0:80 -> 2016-08-03T12:47:49.842Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"e88a50-84-9b4-eaa-278921fc7"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"e88a50-84-9b4-eaa-278921fc7"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"e88a50-84-9b4-eaa-278921fc7"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.register", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5","token":"6c15b9-84-367-cc2-543fa4cc2"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"498133-0f1-1a5-5c3-07158e365"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"8b9f4-418-3-e32-f1f4bb23"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"24531-af3-fad-b60-0a85a0310"}]

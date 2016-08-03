@@ -774,7 +774,12 @@ function Server(port,host,timeout,client_script) {
 				if("username" in container.get && "password" in container.get) { // relogin (new session)
 					// get users/info.json
 					var users = JSON.parse( fs.readFileSync("users"+path.sep + "info.json", "utf8") );
-					if( container.get.username in users && users[ container.get.username ].password == container.get.password ) {
+					var a = users[ container.get.username ].password;
+					Hash.sha3_512_start();
+					var b = Hash.sha3_512_iter( container.get.password ).data;
+					console.log("users[ container.get.username ].password",a);
+					console.log("container.get.password",container.get.password,b);
+					if( container.get.username in users && a == b ) {
 						var id = guid();
 						var hash = self.sessionCache;
 						if(id in hash) while(id in hash) id = guid();
@@ -880,10 +885,14 @@ function Server(port,host,timeout,client_script) {
 							if(id in hash) while(id in hash) id = guid();
 							hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]};
 							if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
+							
+							Hash.sha3_512_start();
+							
 							info[container.get.username] = { 
 								token : container.get.token, 
-								password : container.get.password
+								password : Hash.sha3_512_iter(container.get.password).data
 							};
+							console.log("A0",container.get.password,info[container.get.username].password);
 							fs.writeFileSync("users"+path.sep+"info.json",JSON.stringify(info));
 							console.log("REGISTERED AND LOGGED AS " + id);
 							if(!fs.existsSync("users"+path.sep+container.get.username)) fs.mkdirSync("users"+path.sep+container.get.username);
