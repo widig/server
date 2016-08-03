@@ -649,8 +649,16 @@ function Server(port,host,timeout,client_script) {
 	this.timeout = timeout;
 	this.running = true;
 	var self = this;
+	self.sessionLastSave = 0;
+	self.sessionCount = 0;
+	self.sessionCache = null;
 	function processing(request,response,container) {
 		if(self.running) {
+			if(self.sessionCache == null) {
+				self.sessionCache = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
+			} else {
+				self.sessionCount += 1;
+			}
 			if(container.path=="/") {
 				var data = child_process.spawn("arp",["-a"]);
 				var buffer = [];
@@ -768,10 +776,10 @@ function Server(port,host,timeout,client_script) {
 					var users = JSON.parse( fs.readFileSync("users"+path.sep + "info.json", "utf8") );
 					if( container.get.username in users && users[ container.get.username ].password == container.get.password ) {
 						var id = guid();
-						var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
+						var hash = self.sessionCache;
 						if(id in hash) while(id in hash) id = guid();
 						hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]}
-						fs.writeFileSync("session.json",JSON.stringify(hash));
+						if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
 						response.write("{\"result\":true,\"csrf_cookie\":\""+id+"\"}");
 					} else {
 						response.write("{\"result\":false,\"message\":\"incorrect username or password.\"}");
@@ -780,14 +788,14 @@ function Server(port,host,timeout,client_script) {
 				} else if("csrf_cookie" in container.get) { // auto relogin (reuse session)
 					// relogin
 					
-					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
+					var hash = self.sessionCache;
 					if(hash==null) {
 						response.write("{\"result\":false,\"message\":\"server internal error(2).\"}");
 					} else {
 						if(container.get.csrf_cookie in hash) {
 							hash[ container.get.csrf_cookie ].log.push(["rein",new Date()]);
 							response.write("{\"result\":true}");
-							fs.writeFileSync("session.json",JSON.stringify(hash));
+							if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
 						} else {
 							response.write("{\"result\":false}");
 						}
@@ -797,7 +805,7 @@ function Server(port,host,timeout,client_script) {
 			} else if(container.path == "/json.logout") {
 				if("csrf_cookie" in container.get) {
 					// csrf_cookie -> username -> log out
-					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
+					var hash = self.sessionCache;
 					if(hash==null) {
 						response.writeHead(200, {"content-type": "application/json","connection":"close"});
 						response.write("{\"result\":false,\"message\":\"server internal error(1).\"}");
@@ -820,7 +828,7 @@ function Server(port,host,timeout,client_script) {
 						}
 						// remove session
 						delete hash[container.get.csrf_cookie];
-						fs.writeFileSync("session.json",JSON.stringify(hash));
+						if(self.sessionCount % 10 == 0)  fs.writeFileSync("session.json",JSON.stringify(hash));
 						
 						response.writeHead(200, {"content-type": "application/json","connection":"close"});
 						response.write("{\"result\":true}");
@@ -868,10 +876,10 @@ function Server(port,host,timeout,client_script) {
 							response.write("{\"result\":false,\"message\":\"username has already been taken.\"}");
 						} else {
 							var id = guid();
-							var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
+							var hash = self.sessionCache;
 							if(id in hash) while(id in hash) id = guid();
 							hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]};
-							fs.writeFileSync("session.json",JSON.stringify(hash));
+							if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
 							info[container.get.username] = { 
 								token : container.get.token, 
 								password : container.get.password
@@ -1005,6 +1013,7 @@ function Server(port,host,timeout,client_script) {
 	    	process.exit();
 	});
 	this.server = http.createServer(handler);
+	self.sessionCache = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : {};
 	this.server.on("error",function(err) {
 		console.log("err:",err);
 	});
@@ -1014,6 +1023,8 @@ function Server(port,host,timeout,client_script) {
 				self.stop();
 			}
 		}
+		fs.writeFileSync("session.json",JSON.stringify(self.sessionCache)); // every 10sec backup sessionCache.
+		
 	},10000);
 }
 

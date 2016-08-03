@@ -13,3 +13,7 @@
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"bacb16-559-1e5-ea0-943d4e02d"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]

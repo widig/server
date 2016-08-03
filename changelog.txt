@@ -6,23 +6,34 @@ changelog
 v 0.02
 
 	[user level 2 || -1 -> auto add_contact]
-		
-		json.add_base "abcdefghij"
-		
-		json.add_contact
-			add user
-		json.remove_contact
-			remove user
-		json.find_contact
-			find user
-		json.select_contact
-			use user -> load user word list, sentence list
-			user [root] -> add word refer to root
-		json.add_word
-			add word
 
+		json.parser
+			json.add_base "abcdefghij"
+			
+			json.add_contact
+				add user
+			json.remove_contact
+				remove user
+			json.find_contact
+				find user
+			json.select_contact
+				use user -> load user word list, sentence list
+				user [root] -> add word refer to root
+			json.add_word
+				add word
+				
+	
+	hash password storage
+	
+	
+	
 v 0.01
+	hashed password
 
 	json.login
+		username password -> csrf_token
 	json.logout
+		csrf_token
 	json.register
+		username password token -> csrf_token
+	
