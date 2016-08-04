@@ -82,3 +82,378 @@
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"24531-af3-fad-b60-0a85a0310"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-03T14:58:48.471Z
+[+] 0.0.0.0:80 -> 2016-08-03T14:58:49.269Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"username":"user1","password":"62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[+] 0.0.0.0:80 -> 2016-08-04T02:15:58.021Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[+] 0.0.0.0:80 -> 2016-08-04T02:16:50.013Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[+] 0.0.0.0:80 -> 2016-08-04T02:17:05.224Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:18:18.988Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:18:19.772Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:18:36.068Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:18:36.745Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:18:47.959Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:18:48.591Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:19:06.720Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:19:07.343Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:19:31.191Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:19:31.800Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:19:39.351Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:19:53.765Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:20:09.091Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:20:09.748Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:20:20.487Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:20:21.123Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:21:24.658Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:21:26.194Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"teste","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:22:14.866Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:22:15.470Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:22:40.501Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:22:41.100Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:22:59.426Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:23:00.002Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:23:55.234Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:23:55.865Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:24:13.237Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:24:13.829Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"ok","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"Ok","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:29:15.954Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:29:16.559Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"ok","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:29:55.009Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:29:55.566Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:30:18.030Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:30:18.699Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T02:30:36.153Z
+[+] 0.0.0.0:80 -> 2016-08-04T02:30:36.788Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:07:21.327Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:07:21.998Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:07:32.661Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:07:33.357Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:08:32.882Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:08:33.507Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:09:20.047Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:09:20.621Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:09:31.488Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:09:32.215Z
+[-] 0.0.0.0:80 -> 2016-08-04T12:09:47.907Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:09:48.453Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:10:25.693Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:10:26.346Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:11:03.062Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:11:03.636Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:11:30.455Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:11:31.082Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"OK","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:13:44.162Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:13:44.969Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:14:45.350Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:14:46.080Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:15:38.110Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:15:38.733Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:16:44.659Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:16:45.389Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:17:46.974Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:17:47.588Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:19:54.770Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:19:55.415Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:20:52.494Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:20:53.210Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:21:38.546Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:21:39.244Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:22:37.875Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:22:38.514Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:24:03.187Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:24:03.898Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:24:16.953Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:24:17.722Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:24:55.748Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:24:56.347Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:25:33.944Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:25:34.598Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:27:36.937Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:27:37.564Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:27:57.977Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:27:58.618Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:28:37.548Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:28:38.224Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:29:20.689Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:29:21.354Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:29:55.511Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:29:56.134Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:35:26.093Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:35:26.737Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:38:12.516Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:38:13.210Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:38:43.934Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:38:44.554Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:49:05.893Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:49:06.683Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:50:03.086Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:50:03.257Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:50:19.955Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:50:20.134Z
+[-] 0.0.0.0:80 -> 2016-08-04T12:50:21.234Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:50:22.741Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:50:33.220Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:50:34.296Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:51:01.510Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:51:02.164Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"%22teste%22","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[-] 0.0.0.0:80 -> 2016-08-04T12:51:43.939Z
+[+] 0.0.0.0:80 -> 2016-08-04T12:51:44.613Z
+[i] 0.0.0.0:80 -> request [ method : get, url: "/", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.login", get: {"csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"None","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/json.parser", get: {"query":"%22teste%22","csrf_cookie":"39aada-190-5a2-b5b-033afefb1"}]
+[i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]

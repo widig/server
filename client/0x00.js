@@ -520,7 +520,7 @@ Hash = {
 		return { result : true, data : __kernel_hash.hex() };
 	}
 }
-console.log(" ok" );
+
 /**
 *
 *  Base64 encode / decode
@@ -869,6 +869,35 @@ window.addEventListener("load",function() {
 		terminal.style.border = "1px solid #000";
 		terminal.style.width = "800px";
 		terminal.style.height = "640px";
+		
+		
+		var command = document.getElementById("txtCommand");
+		function submit_command() {
+			var csrf_cookie = localStorage.getItem("csrf-cookie");
+			var args = {
+				query : command.value,
+				csrf_cookie : csrf_cookie
+			}
+			Import({url:"/json.parser",method:"get",json:true,data:args})
+				.done(function(data) {
+					if(data.result) {
+						console.log("OK COMMAND:"+command.value);
+					} else {
+						console.log("FAIL COMMAND:"+command.value);
+					}
+				})
+				.fail(function(error) {
+					console.log("FAIL COMMAND:"+error.message,command.value);
+				})
+				.send();
+		}
+		
+		command.addEventListener("keydown",function(e) {
+			if(e.keyCode==13) { submit_command(); }
+		});
+		
+		
+		
 	}
 	function unload_terminal() {
 		var terminal = document.getElementById("terminal");

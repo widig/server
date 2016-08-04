@@ -711,7 +711,7 @@ function Server(port,host,timeout,client_script) {
 						// terminal interface
 						"<div id=\"terminal\" style=\"display:none;position:absolute;left:10px;top:40px;padding:10px;\">"+
 							"<div style=\"position:relative;width:780px;height:30px;border:solid 1px #000;padding:5px;background-color:#eee;\">"+
-								"<input type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
+								"<input id=\"txtCommand\" type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
 							"</div>"+
 						"</div>"+
 						
@@ -885,11 +885,9 @@ function Server(port,host,timeout,client_script) {
 							if(id in hash) while(id in hash) id = guid();
 							hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]};
 							if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
-							
 							Hash.sha3_512_start();
-							
 							info[container.get.username] = { 
-								token : container.get.token, 
+								token : container.get.token,
 								password : Hash.sha3_512_iter(container.get.password).data
 							};
 							console.log("A0",container.get.password,info[container.get.username].password);
@@ -900,7 +898,7 @@ function Server(port,host,timeout,client_script) {
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"parser.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"parser.json",
 								"{"+
 									"\"main\" : \"main\","+
-									"\"stack\" : [{}]"+
+									"\"stack\" : [{\"main\":[[[1,\"OK\"]]}]"+
 								"}"
 							);
 							if(!fs.existsSync("users"+path.sep+container.get.username+path.sep+"words.json")) fs.writeFileSync("users"+path.sep+container.get.username+path.sep+"base.json","{}");
@@ -931,21 +929,46 @@ function Server(port,host,timeout,client_script) {
 			} else if(container.path == "/json.login_remember") {
 			
 			} else if(container.path == "/json.parser") {
-				
+				response.writeHead(200, {"content-type": "application/json","connection":"close"});
 				if( "query" in container.get && "csrf_cookie" in container.get) {
-					/*
-					var stack = JSON.parse( fs.readFileSync("users"+path.sep+container.get.username+path.sep+"parser.json") );
-					var hash = fs.existsSync("session.json") ? JSON.parse( fs.readFileSync("session.json") ) : null;
-					if(hash==null) {
 					
-					} else {
+					var shell = require("./webshell.js");
 					
+					var error = false;
+					var error_message = "";
+					try {
+						console.log(">> call to webshell");
+						var options  = {
+							doc : unescape(container.get.query),
+							username : self.sessionCache[container.get.csrf_cookie ].username,
+							start : "main"
+						};
+						var r = shell.parse(options);
+						console.log(JSON.stringify(r));
+						console.log(">> end of call to webshell");
+					} catch(e) {
+						console.log(
+							"[error]",
+							JSON.stringify(e),
+							e.message,
+							e.stack
+						);
+						error_message = e.message;
+						error = true;
 					}
-					TODO:
-						cache session once loaded
-						hash password
-					*/
+					
+					if(!error) {
+						response.write("{\"result\":true}");
+						response.end();
+					} else {
+						response.write("{\"result\":false,\"message\":\"parser error:"+error_message+"\"}");
+						response.end();
+					}
+				} else {
+					response.write("{\"result\":false,\"message\":\"invalid arguments to parse command.\"}");
+					response.end();
 				}
+				
 			}
 		} else {
 			response.writeHead(500, {"content-type": "text/html","connection":"close"});
