@@ -200,6 +200,8 @@ function StringMap(str) {
 	}
 	return map;
 }
+
+
 var lang = {};
 function wsParser(options) { 
 	// parse with map reduce
@@ -211,6 +213,11 @@ function wsParser(options) {
 	var doc = null;
 	var ret = {};
 	var packet = null;
+	var run = false;
+	if("run" in options) {
+		run = options.run;
+		options.run = false;
+	}
 	
 	if("doc" in options) {
 		doc = options.doc;
@@ -237,8 +244,8 @@ function wsParser(options) {
 		
 		lang = options.lang = lang.stack[0];
 		
-		events.main = function(ctx,index,data) {
-			console.log("MAIN",index,data);
+		if("events" in options) {
+			events = options.events;
 		}
 		
 		// parsed language (ignore tag mode)
@@ -343,6 +350,10 @@ function wsParser(options) {
 		options.comments = [];
 	}
 	
+	if(!("context" in options)) { // one command context (webrequest)
+		options.context = {};
+	}
+	
 	var start = null;
 	if("start" in options) {
 		start = options.start;
@@ -350,6 +361,7 @@ function wsParser(options) {
 		start = "main";
 		options.start = start;
 	}
+	console.log(">",start);
 	if(debug) console.log(JSON.stringify(options));
 	if(debug) console.log("GO!",start);
 	
@@ -747,35 +759,37 @@ function wsParser(options) {
 	ret.comments = options.comments;
 	ret.code = doc;
 	
-	
 	//Lang({cmd:"run"},"main",ret);
-	var data = ret;
-	if(data.result) {
-		if(debug) console.log(">> webshell start event handling");
-		var stack = [ data ];
-		while(stack.length>0) {
-			var rule = stack.shift();
-			//console.log(rule,rule.name);
-			if("data" in rule) { // get string of each item to pass to event
-				for(var x = 0; x < rule.data.length;x++) {
-					stack.unshift(rule.data[rule.data.length-1-x]);
-				}
-			}
-			if(rule.name in events) {
-				var arr = [];
-				for(var x = 0; x < rule.data.length;x++) {
-					if("range" in rule.data[x]) {
-						arr.push( data.code.substring( rule.data[x].range[0], rule.data[x].range[1] ) );
+	if(run) {
+		var data = ret;
+		if(data.result) {
+			if(debug) console.log(">> webshell start event handling");
+			// console.log(JSON.stringify(events));
+			var stack = [ data ];
+			while(stack.length>0) {
+				var rule = stack.shift();
+				//console.log(rule,rule.name);
+				if("data" in rule) { // get string of each item to pass to event
+					for(var x = 0; x < rule.data.length;x++) {
+						stack.unshift(rule.data[rule.data.length-1-x]);
 					}
 				}
-				// console.log("@@ TRIGGER!!",rule.index,arr);
-				// first argument is context, which is the machine
-				events[ rule.name ](  {} /*machine*/,rule.index, arr  );
+				
+				if(rule.name in events) {
+					var arr = [];
+					for(var x = 0; x < rule.data.length;x++) {
+						if("range" in rule.data[x]) {
+							arr.push( data.code.substring( rule.data[x].range[0], rule.data[x].range[1] ) );
+						}
+					}
+					// console.log("@@ TRIGGER!!",rule.index,arr);
+					// first argument is context, which is the machine
+					events[ rule.name ](  options.context /*machine*/,rule.index, arr  );
+				}
 			}
+			if(debug) console.log(">> webshell end event handling");
 		}
-		if(debug) console.log(">> webshell end event handling");
 	}
-	
 	return ret;	
 	
 }

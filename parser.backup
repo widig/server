@@ -1,5 +1,19 @@
 {"main" : "main","stack" : [
 		{
+			"LexicalTokenBaseCharSpaceNl" : [
+				[[4," \t\r\n"]]
+			],
+			"LexicalTokenBaseCharSpaceNlOpt": [
+				[[0,"LexicalTokenBaseCharSpaceNl"]],
+				[[2]]
+			],
+			"LexicalTokenBaseArraySpaceNl":[
+				[[6,"LexicalTokenBaseCharSpaceNl"]]
+			],
+			"LexicalTokenBaseArraySpaceNlOpt":[
+				[[6,"LexicalTokenBaseCharSpaceNl"]],
+				[[2]]
+			],
 			"LexicalTokenBaseCharAlpha":[
 				[[4,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]]
 			],
@@ -25,11 +39,31 @@
 			"TypeString" : [
 				[ [1,"\""], [0,"LexicalTokenBaseDQSC"], [1,"\""] ]
 			],
+			"LexicalTokenBaseNameChar":[
+				[[3,"LexicalTokenBaseCharAlpha"]],
+				[[3,"LexicalTokenBaseCharDecimalDigit"]],
+				[[3,"LexicalTokenBaseCharPunc"]]
+			],
+			"LexicalTokenBaseName" : [
+				[ [6,"LexicalTokenBaseNameChar"] ]
+			],
+			"TypeName" : [
+				[ [0,"LexicalTokenBaseName"] ]
+			],
 			"main" : [
+				[ [0,"Syntax"] ],
 				[ [0,"CustomSyntax"] ]
 			],
+			"Syntax" : [
+				[ [1,"add"] ]
+				//[0,"LexicalTokenBaseCharSpaceNl"], [1,"user"], [0,"LexicalTokenBaseCharSpaceNl"], 
+			],
 			"CustomSyntax" : [
+				[ [0,"CustomSyntaxSentences"] ],
 				[ [0,"CustomSyntaxWords"] ]
+			],
+			"CustomSyntaxSentences" : [
+				[ [1,"add"], [0,"TypeString"] ]
 			],
 			"CustomSyntaxWords" : [
 				[ [0,"CustomSyntaxGroupWords"] ],
@@ -42,6 +76,9 @@
 			"CustomSyntaxLoneWords" : [
 				[ [1,"None"] ]
 			]
+			// add user
+			// remove user
+			// find user
 		}
 	]
 }

@@ -1,15 +1,31 @@
-{"main" : "main","stack" : [
+{
+	"main": "main",
+	"stack": [
 		{
-			"LexicalTokenBaseCharAlpha":[
+			"LexicalTokenBaseCharSpaceNl": [
+				[[4," \t\r\n"]]
+			],
+			"LexicalTokenBaseCharSpaceNlOpt": [
+				[[0,"LexicalTokenBaseCharSpaceNl"]],
+				[[2]]
+			],
+			"LexicalTokenBaseArraySpaceNl": [
+				[[6,"LexicalTokenBaseCharSpaceNl"]]
+			],
+			"LexicalTokenBaseArraySpaceNlOpt": [
+				[[6,"LexicalTokenBaseCharSpaceNl"]],
+				[[2]]
+			],
+			"LexicalTokenBaseCharAlpha": [
 				[[4,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]]
 			],
-			"LexicalTokenBaseCharDecimalDigit":[
+			"LexicalTokenBaseCharDecimalDigit": [
 				[[4,"0123456789"]]
 			],
-			"LexicalTokenBaseCharPunc":[
+			"LexicalTokenBaseCharPunc": [
 				[[4,"`~!@#$%^&*()_+-[]{}|;:,.?<>/="]]
 			],
-			"LexicalTokenBaseDQSCchar":[
+			"LexicalTokenBaseDQSCchar": [
 				[[1,"\\\n"]],
 				[[1,"\\\r\n"]],
 				[[1,"\\\\"]],
@@ -19,28 +35,113 @@
 				[[3,"LexicalTokenBaseCharDecimalDigit"]],
 				[[3,"LexicalTokenBaseCharPunc"]]
 			],
-			"LexicalTokenBaseDQSC" : [
-				[ [6,"LexicalTokenBaseDQSCchar"] ]
+			"LexicalTokenBaseDQSC": [
+				[[6,"LexicalTokenBaseDQSCchar"]]
 			],
-			"TypeString" : [
-				[ [1,"\""], [0,"LexicalTokenBaseDQSC"], [1,"\""] ]
+			"TypeString": [
+				[
+					[1,"\""],
+					[0,"LexicalTokenBaseDQSC"],
+					[1,"\""]
+				]
 			],
-			"main" : [
-				[ [0,"CustomSyntax"] ]
+			"LexicalTokenBaseNameChar": [
+				[[3,"LexicalTokenBaseCharAlpha"]],
+				[[3,"LexicalTokenBaseCharDecimalDigit"]],
+				[[3,"LexicalTokenBaseCharPunc"]]
 			],
-			"CustomSyntax" : [
-				[ [0,"CustomSyntaxWords"] ]
+			"LexicalTokenBaseName": [
+				[[6,"LexicalTokenBaseNameChar"]]
 			],
-			"CustomSyntaxWords" : [
-				[ [0,"CustomSyntaxGroupWords"] ],
-				[ [0,"CustomSyntaxLoneWords"] ]
+			"TypeName": [
+				[[0,"LexicalTokenBaseName"]]
 			],
-			"CustomSyntaxGroupWords" : [
-				[ [0,"TypeString"] ],
-				[ [1,"None"] ]
+			"main": [
+				[[0,"Syntax"]],
+				[[0,"SyntaxCustom"]]
 			],
-			"CustomSyntaxLoneWords" : [
-				[ [1,"None"] ]
+			"Syntax": [
+				[[0,"AddUser"]],
+				[[0,"Add"]]
+			],
+			"SyntaxCustom" : [
+				[[0,"SyntaxCustomWords"]]
+			],
+			"SyntaxCustomWords" : [
+				[[1,"None"]]
+			],
+			"AddWord" : [
+				[[1,"put"]],
+				[[1,"add"]],
+				[[1,"insert"]],
+				[[1,"+"]],
+				[[1,"adicionando"]],
+				[[1,"adicionar"]],
+				[[1,"adicione"]],
+				[[1,"inserir"]],
+				[[1,"insira"]],
+				[[1,"inserindo"]],
+				[[1,"coloque"]],
+				[[1,"colocar"]],
+				[[1,"colocando"]]
+			],
+			"SystemAddBegin" : [
+				[[2]]
+			],
+			"SystemAddEnd" : [
+				[[2]]
+			],
+			"Add" : [
+				[
+					[0,"SystemAddBegin"],
+					[0,"AddWord"],
+					[0,"LexicalTokenBaseArraySpaceNlOpt"],
+					[0,"SyntaxCustomAdd"],
+					[0,"SystemAddEnd"]
+				]
+			],
+			"SyntaxCustomAdd" : [
+				[[6,"SyntaxCustomAddInputType"]]
+			],
+			"SyntaxCustomAddInputType": [
+				[ [0,"LexicalTokenBaseArraySpaceNlOpt"],[0,"SyntaxCustomAddInputTypeItem"] ]
+			],
+			"SyntaxCustomAddInputTypeItem" : [
+				[[0,"SyntaxCustomWords"]],
+				[[0,"TypeName"]]
+			],
+			"AddUser": [
+				[
+					[0,"AddWord"],
+					[0,"LexicalTokenBaseArraySpaceNlOpt"],
+					[1,"user"],
+					[0,"LexicalTokenBaseArraySpaceNlOpt"],
+					[0,"TypeName"]
+				]
+			],
+			"CustomSyntax": [
+				[[0,"CustomSyntaxSentences"]],
+				[[0,"CustomSyntaxWords"]]
+			],
+			"CustomSyntaxSentences": [
+				[
+					[1,"add"],
+					[0,"TypeString"]
+				]
+			],
+			"CustomSyntaxWords": [
+				[[0,"CustomSyntaxGroupWords"]],
+				[[0,"CustomSyntaxLoneWords"]]
+			],
+			"CustomSyntaxGroupWords": [
+				[[0,"TypeString"]],
+				[[1,"None"]]
+			],
+			"CustomSyntaxLoneWords": [
+				[[1,"None"]]
+			],
+			"_Contacts": [
+				"user2"
 			]
 		}
 	]

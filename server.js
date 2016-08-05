@@ -710,9 +710,14 @@ function Server(port,host,timeout,client_script) {
 						
 						// terminal interface
 						"<div id=\"terminal\" style=\"display:none;position:absolute;left:10px;top:40px;padding:10px;\">"+
+							"<div id=\"frameContacts\" style=\"position:absolute;\">"+
+								"<div>contatos</div>"+
+								"<div id=\"lstContacts\"></div>"+
+							"</div>"+
 							"<div style=\"position:relative;width:780px;height:30px;border:solid 1px #000;padding:5px;background-color:#eee;\">"+
 								"<input id=\"txtCommand\" type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
 							"</div>"+
+							
 						"</div>"+
 						
 						// [system]
@@ -937,14 +942,60 @@ function Server(port,host,timeout,client_script) {
 					var error = false;
 					var error_message = "";
 					try {
+						
 						console.log(">> call to webshell");
+						var username = self.sessionCache[container.get.csrf_cookie ].username;
 						var options  = {
+							run : true,
 							doc : unescape(container.get.query),
-							username : self.sessionCache[container.get.csrf_cookie ].username,
-							start : "main"
+							username : username,
+							start : "main",
+							events : {
+								"SystemAddBegin" : function(ctx,index,data) {
+									if(!("flags" in ctx)) ctx.flags = {};
+									if(!("storage" in ctx)) ctx.storage = {};
+									ctx.storage.add = [];
+									ctx.flags.add = true;
+								},
+								"SystemAddEnd" : function(ctx,index,data) {
+									console.log(ctx.storage.add);
+									ctx.flags = false;
+								},
+								"SyntaxCustomAddInputTypeItem" : function(ctx,index,data) {
+									if("flags" in ctx && "add" in ctx.flags && ctx.flags.add) {
+										ctx.storage.add.push(data[0]);
+										//console.log("{{ " + data + " }}");
+									}
+								},
+								"AddUser" : function(ctx,index,data) {
+									console.log("<<<",data,">>>");
+									// check if user exists
+									var info = fs.existsSync("users" + path.sep + "info.json") ? JSON.parse(fs.readFileSync("users" + path.sep + "info.json")) : null;
+									if(info!=null) {
+										if(username in info && data[4] in info) {
+											var parser = fs.existsSync("users" + path.sep + username + path.sep + "parser.json") ? JSON.parse(fs.readFileSync("users" + path.sep + username + path.sep + "parser.json","utf8")) : null;
+											parser.stack[0]._Contacts.push(data[4]);
+											fs.writeFileSync("users" + path.sep + username + path.sep + "parser.json",JSON.stringify(parser));
+											console.log("add user " + data[4] + " to " + username + " contact list.");
+										} else {
+											if(!(username in info)) {
+												console.log(username + " not found.(critical)");
+											}
+											if(!(data[4] in info)) {
+												console.log(data[4] + " not found.(critical)");
+											}
+										}
+									} else {
+										console.log("users list not found.");
+									}
+								}
+							}
 						};
 						var r = shell.parse(options);
-						console.log(JSON.stringify(r));
+						if(r.result) {
+							console.log(r.code);
+						}
+						//console.log(JSON.stringify(r));
 						console.log(">> end of call to webshell");
 					} catch(e) {
 						console.log(

@@ -820,13 +820,34 @@ ImportList.prototype.send = function() {
 		this.data[x].target.send();
 	}
 }
+
+function getBounds() {
+	var w = window,
+		d = document,
+		e = d.documentElement,
+		g = d.getElementsByTagName('body')[0],
+		screenWidth = w.innerWidth || e.clientWidth || g.clientWidth,
+		screenHeight = w.innerHeight|| e.clientHeight|| g.clientHeight;
+	return [screenWidth,screenHeight];
+}
+window.addEventListener("resize",function() {
+
+});
 window.addEventListener("load",function() {
 	// verify if localStorage has a crsf cookie -> try to auto login
+	
+	
+		    
 	var logout = document.getElementById("btnLogout");
 	logout.style.display = "none";
-	logout.style.left = "800px";
-	logout.style.padding = "10px";
+	
+	logout.style.left = (getBounds()[0]-128) +"px";
+	logout.style.top = "10px";
+	logout.style.height = "20px";
+	logout.style.width = "100px";
+	logout.style.padding = "5px";
 	logout.style.cursor = "pointer";
+	logout.style.textAlign = "center";
 	logout.addEventListener("mouseover",function() {
 		logout.style.backgroundColor = "#000";
 		logout.style.color = "#fff";
@@ -866,10 +887,20 @@ window.addEventListener("load",function() {
 	function load_terminal() {
 		var terminal = document.getElementById("terminal");
 		terminal.style.display = "";
+		terminal.style.backgroundColor = "#ccc";
 		terminal.style.border = "1px solid #000";
-		terminal.style.width = "800px";
-		terminal.style.height = "640px";
 		
+		var sz = getBounds();
+    
+		terminal.style.width = (sz[0]-50)+"px";
+		terminal.style.height = (sz[1]-80) +"px";
+		var frameContacts = document.getElementById("frameContacts");
+		frameContacts.style.position = "absolute";
+		frameContacts.style.left = (sz[0]-150) + "px";
+		frameContacts.style.top = "0px";
+		frameContacts.style.width = "100px";
+		frameContacts.style.height = (sz[1]-80)+"px";
+		frameContacts.style.padding = "10px";
 		
 		var command = document.getElementById("txtCommand");
 		function submit_command() {
