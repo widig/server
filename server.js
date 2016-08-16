@@ -641,7 +641,7 @@ function createUserFolder() {
 function createUserInfoFile() {
 }
 
-function Server(port,host,timeout,client_script) {
+function Server(port,host,timeout) {
 	this.port = port;
 	this.host = host;
 	this.debugFlag = false;
@@ -672,7 +672,17 @@ function Server(port,host,timeout,client_script) {
 						"<!doctype html><html>"+
 						"<head>"+
 						"<script>"+
-						fs.readFileSync(client_script)+
+						fs.readFileSync("./client/0x01.js")+"\r\n"+
+						fs.readFileSync("./client/0x02.js")+"\r\n"+
+						fs.readFileSync("./client/0x03.js")+"\r\n"+
+						fs.readFileSync("./client/0x04.js")+"\r\n"+
+						fs.readFileSync("./client/0x05.js")+"\r\n"+
+						fs.readFileSync("./client/0x06.js")+"\r\n"+
+						fs.readFileSync("./client/0x07.js")+"\r\n"+
+						fs.readFileSync("./client/0x08.js")+"\r\n"+
+						fs.readFileSync("./client/0x09.js")+"\r\n"+
+						fs.readFileSync("./client/0x0A.js")+"\r\n"+
+						//fs.readFileSync("./client/0x00.js")+"\r\n"+
 						"</script>"+
 						"</head><body>"+
 						
@@ -717,7 +727,7 @@ function Server(port,host,timeout,client_script) {
 							"<div style=\"position:relative;width:780px;height:30px;border:solid 1px #000;padding:5px;background-color:#eee;\">"+
 								"<input id=\"txtCommand\" type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
 							"</div>"+
-							
+							"<div id=\"lstThreads\" style=\"position:absolute;left:10px;top:52px;border:solid 1px #000;\"></div>"+
 						"</div>"+
 						
 						// [system]
@@ -938,7 +948,10 @@ function Server(port,host,timeout,client_script) {
 				if( "query" in container.get && "csrf_cookie" in container.get) {
 					
 					var shell = require("./webshell.js");
-					
+					var results = {
+						code : 0,
+						data : null
+					};
 					var error = false;
 					var error_message = "";
 					try {
@@ -955,16 +968,31 @@ function Server(port,host,timeout,client_script) {
 									if(!("flags" in ctx)) ctx.flags = {};
 									if(!("storage" in ctx)) ctx.storage = {};
 									ctx.storage.add = [];
+									ctx.storage.addType = [];
 									ctx.flags.add = true;
+									console.log("!C");
 								},
 								"SystemAddEnd" : function(ctx,index,data) {
 									console.log(ctx.storage.add);
+									results.code = 1; // add topic
+									results.data = ctx.storage.add;
 									ctx.flags = false;
+									console.log("!D");
 								},
-								"SyntaxCustomAddInputTypeItem" : function(ctx,index,data) {
+								"SyntaxCustomWords" : function(ctx,index,data) {
 									if("flags" in ctx && "add" in ctx.flags && ctx.flags.add) {
+										console.log("!B");
 										ctx.storage.add.push(data[0]);
+										ctx.storage.addType.push(0);
 										//console.log("{{ " + data + " }}");
+									}
+								},
+								"TypeName" : function(ctx,index,data) {
+									console.log("!A");
+									if("flags" in ctx && "add" in ctx.flags && ctx.flags.add) {
+										console.log("!B");
+										ctx.storage.add.push(data[0]);
+										ctx.storage.addType.push(1); // not found word
 									}
 								},
 								"AddUser" : function(ctx,index,data) {
@@ -1009,8 +1037,14 @@ function Server(port,host,timeout,client_script) {
 					}
 					
 					if(!error) {
-						response.write("{\"result\":true}");
-						response.end();
+						if(results.code == 0) {
+							response.write("{\"result\":true,\"code\":0}");
+							response.end();
+						} else if(results.code == 1) {
+							response.write("{\"result\":true,\"code\":1,\"data\":"+JSON.stringify(results.data)+"}");
+							response.end();
+						}
+						
 					} else {
 						response.write("{\"result\":false,\"message\":\"parser error:"+error_message+"\"}");
 						response.end();
@@ -1129,6 +1163,6 @@ Server.prototype.stop = function() {
 	fs.appendFileSync("log.txt","[-] " + this.host + ":" + this.port + " -> " + new Date().toISOString() +"\r\n");
 }
 
-var server = new Server(80,"0.0.0.0",-1,"./client/0x00.js");
+var server = new Server(80,"0.0.0.0",-1);
 server.debug(true);
 server.start();

@@ -51,7 +51,7 @@
 				[[3,"LexicalTokenBaseCharPunc"]]
 			],
 			"LexicalTokenBaseName": [
-				[[6,"LexicalTokenBaseNameChar"]]
+				[[3,"LexicalTokenBaseNameChar"]]
 			],
 			"TypeName": [
 				[[0,"LexicalTokenBaseName"]]
