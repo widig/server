@@ -685,50 +685,16 @@ function Server(port,host,timeout) {
 						//fs.readFileSync("./client/0x00.js")+"\r\n"+
 						"</script>"+
 						"</head><body>"+
-						
 						// ip interface
 						"<div style=\"position:absolute;left:10px;top:10px;border:solid 1px #000;\">"+
 						container.clientIp+
 						//"<br/>"+data1[0].substring("Interface: ".length)+
 						"</div>"+
-						
-						
 						// start panel
-						"<div id=\"panelLogin\" style=\"position:absolute;left:10px;top:40px;border:solid 1px #000;padding:10px;background-color:#ec3;\">"+
-							// login interface
-							"<table>"+
-								"<tr><td align=\"right\" valign=\"top\">usuario : </td><td valign=\"top\"><input id=\"login_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-								"<tr><td align=\"right\" valign=\"top\">senha : </td><td valign=\"top\"><input id=\"login_password\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/><br/><a style=\"font-size:13px;\">esqueceu a senha?</a></td></tr>"+
-								"<tr><td></td><td id=\"login_btn\" style=\"text-align:center;\">acessar</td></tr>"+
-							"</table>"+
-							// register interface
-							"<table>"+
-								"<tr><td align=\"right\">usuario : </td><td><input id=\"register_username\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-								"<tr><td align=\"right\">senha : </td><td><input id=\"register_password1\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-								"<tr><td align=\"right\">senha : </td><td><input id=\"register_password2\" type=\"password\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-								"<tr><td align=\"right\">token : </td><td><input id=\"register_token\" type=\"text\" style=\"border:solid 1px #000;padding:1px;\"/></td></tr>"+
-								"<tr><td></td><td id=\"register_btn\" style=\"text-align:center;\">registrar</td></tr>"+
-							"</table>"+
-							"<div id=\"lblErrorMessage\" style=\"border:solid 1px #f00;background-color:#fff;color:#000;display:none;padding:5px;\"></div>"+
-						"</div>"+
-						
-						
 						// logout interface
-						"<div id=\"btnLogout\" style=\"position:absolute;top:10px;\">"+
-						"logout"+
-						"</div>"+
+						
 						
 						// terminal interface
-						"<div id=\"terminal\" style=\"display:none;position:absolute;left:10px;top:40px;padding:10px;\">"+
-							"<div id=\"frameContacts\" style=\"position:absolute;\">"+
-								"<div>contatos</div>"+
-								"<div id=\"lstContacts\"></div>"+
-							"</div>"+
-							"<div style=\"position:relative;width:780px;height:30px;border:solid 1px #000;padding:5px;background-color:#eee;\">"+
-								"<input id=\"txtCommand\" type=\"text\" style=\"width:755px;height:25px;border:solid 1px #000;outline:0px;padding-left:10px;padding-right:10px;\"/>"+
-							"</div>"+
-							"<div id=\"lstThreads\" style=\"position:absolute;left:10px;top:52px;border:solid 1px #000;\"></div>"+
-						"</div>"+
 						
 						// [system]
 						
@@ -789,18 +755,22 @@ function Server(port,host,timeout) {
 				if("username" in container.get && "password" in container.get) { // relogin (new session)
 					// get users/info.json
 					var users = JSON.parse( fs.readFileSync("users"+path.sep + "info.json", "utf8") );
-					var a = users[ container.get.username ].password;
-					Hash.sha3_512_start();
-					var b = Hash.sha3_512_iter( container.get.password ).data;
-					console.log("users[ container.get.username ].password",a);
-					console.log("container.get.password",container.get.password,b);
-					if( container.get.username in users && a == b ) {
-						var id = guid();
-						var hash = self.sessionCache;
-						if(id in hash) while(id in hash) id = guid();
-						hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]}
-						if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
-						response.write("{\"result\":true,\"csrf_cookie\":\""+id+"\"}");
+					if(container.get.username in users) {
+						var a = users[ container.get.username ].password;
+						Hash.sha3_512_start();
+						var b = Hash.sha3_512_iter( container.get.password ).data;
+						console.log("users[ container.get.username ].password",a);
+						console.log("container.get.password",container.get.password,b);
+						if( container.get.username in users && a == b ) {
+							var id = guid();
+							var hash = self.sessionCache;
+							if(id in hash) while(id in hash) id = guid();
+							hash[id] = {csrf:id,username:container.get.username,log:[["in",new Date()]]}
+							if(self.sessionCount % 10 == 0) fs.writeFileSync("session.json",JSON.stringify(hash));
+							response.write("{\"result\":true,\"csrf_cookie\":\""+id+"\"}");
+						} else {
+							response.write("{\"result\":false,\"message\":\"incorrect username or password.\"}");
+						}
 					} else {
 						response.write("{\"result\":false,\"message\":\"incorrect username or password.\"}");
 					}

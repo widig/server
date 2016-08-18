@@ -40,8 +40,7 @@ function base_container() {
 	this.container.style.width = "1px";
 	this.container.style.height = "1px";
 }
-
-Router.addPage({name:"home",template:"base"},function(args,template) { // loaded presentation, communications panel
+Router.addPage({name:"login",template:"base"},function(args,template) { // loaded presentation, communications panel
 	var self = this;
 	base_container.apply(this);
 	
@@ -50,7 +49,8 @@ Router.addPage({name:"home",template:"base"},function(args,template) { // loaded
 	origin_lt_container.elementsClear();
 	var w = window.innerWidth || document.documentElement.clientWidth || body.clientWidth,
 	h = window.innerHeight|| document.documentElement.clientHeight|| body.clientHeight;
-		
+	var $ = BrowserTools.setStyle;
+	var $$ = BrowserTools.arraySetStyle;	
 	var p = origin_lt_container.elementNewPacket(
 		"<div id=\"panelLogin\" style=\"position:absolute;left:"+(w/2-200)+"px;top:"+(h/2-320)+"px;width:400px;height:640px;border:solid 1px #000;background-color:#ec3;\">"+
 			
@@ -85,7 +85,7 @@ Router.addPage({name:"home",template:"base"},function(args,template) { // loaded
 						"</tr>"+
 						"<tr>"+
 							"<td></td>"+
-							"<td id=\"login_btn\" style=\"font-family:Tahoma;font-size:16px;\"><text value=\"Acessar\"/></td>"+
+							"<td id=\"login_btn\" style=\"font-family:Tahoma;font-size:16px;cursor:pointer;\"><text value=\"Acessar\"/></td>"+
 						"</tr>"+
 						"<tr>"+
 							"<td colspan=\"2\" style=\"font-family:Tahoma;font-size:30px;\"><text value=\"Registro\"/></td>"+
@@ -116,20 +116,204 @@ Router.addPage({name:"home",template:"base"},function(args,template) { // loaded
 						"</tr>"+
 						"<tr>"+
 							"<td></td>"+
-							"<td id=\"register_btn\" style=\"font-family:Tahoma;font-size:16px;\"><text value=\"Registrar\"/></td>"+
+							"<td id=\"register_btn\" style=\"font-family:Tahoma;font-size:16px;cursor:pointer;\"><text value=\"Registrar\"/></td>"+
 						"</tr>"+
 					"</table>"+
 					"</td>"+
 				"</tr>"+
 			"</table>"+
-			"<div id=\"lblErrorMessage\" style=\"border:solid 1px #f00;background-color:#fff;color:#000;display:none;padding:5px;\"></div>"+
+			"<div id=\"lblErrorMessage\" style=\"position:relative;top:570px;border:solid 1px #f00;background-color:#fff;color:#000;display:none;padding:5px;\"></div>"+
 		"</div>"
 	);
+	
+	p.el.login_username.value = "";
+	p.el.login_password.value = "";
+	function submit_login() {
+		var username = p.el.login_username.value;
+		Hash.sha3_512_start();
+		var args = {
+			username : p.el.login_username.value,
+			password : Hash.sha3_512_iter(p.el.login_password.value).data
+		};
+		Import({url:"/json.login",method:"get",json:true,data:args})
+			.done(function(data) {
+				//alert(JSON.stringify(data));
+				if(data.result) {
+					localStorage.setItem("csrf-cookie",data.csrf_cookie);
+					localStorage.setItem("username",username);
+					//document.getElementById("panelLogin").style.display = "none";
+					//document.getElementById("lblErrorMessage").style.display = "none";
+					//load_terminal();
+					//logout.style.display = "";
+					
+					// goto
+					History.go("#home");
+					
+				} else {
+					var error = p.el.lblErrorMessage;
+					error.innerHTML = data.message;
+					error.style.display = "";
+				}
+				p.el.login_username.value = "";
+				p.el.login_password.value = "";
+			})
+			.fail(function(error) {
+				var error = p.el.lblErrorMessage;
+				error.innerHTML = error.message;
+				error.style.display = "";
+			})
+			.send();
+	}
+	function submit_register() {
+		var username = p.el.register_username.value;
+		if(p.el.register_password1.value == p.el.register_password2.value) {
+			Hash.sha3_512_start();
+			var args = {
+				username : p.el.register_username.value,
+				password : Hash.sha3_512_iter(p.el.register_password1.value).data,
+				token : p.el.register_token.value
+			};
+			Import({url:"/json.register",method:"get",json:true,data:args})
+				.done(function(data) {
+					if(data.result) {
+						localStorage.setItem("csrf-cookie",data.csrf_cookie);
+						localStorage.setItem("username",username);
+						History.go("#home");
+						
+					} else {
+						var error = p.el.lblErrorMessage;
+						error.innerHTML = data.message;
+						error.style.display = "";
+					}
+					p.el.register_username.value = "";
+					p.el.register_password1.value = "";
+					p.el.register_password2.value = "";
+					p.el.register_token.value = "";
+				})
+				.fail(function(error) {
+					var error = p.el.lblErrorMessage;
+					error.innerHTML = error.message;
+					error.style.display = "";
+				})
+				.send();
+		} else {
+			var error = p.el.lblErrorMessage;
+			error.innerHTML = "please, retype password correctly.";
+			error.style.display = "";
+			register_password1.value = "";
+			register_password2.value = "";
+			//alert("please, retype password correctly.");
+		}
+	}
+	$(p.el.login_username,{
+		events : {
+			keydown : function(e) {
+				if(e.keyCode==13) { submit_login(); }
+			}
+		}
+	});
+	$(p.el.login_password,{
+		events : {
+			keydown : function(e) {
+				if(e.keyCode==13) { submit_login(); }
+			}
+		}
+	});
+	$(p.el.login_btn,{
+		events : {
+			click : function() {
+				submit_login();
+			}
+		}
+	});
+	$(p.el.register_btn,{
+		events : {
+			click : function() {
+				submit_register();
+			}
+		}
+	});
+	
+	
+	var start_page = "home";
+	var csrf_cookie = localStorage.getItem("csrf-cookie");
+	if(csrf_cookie == null || csrf_cookie == undefined || csrf_cookie == "undefined") {
+		
+	} else {
+		Import({url:"/json.login",method:"get",json:true,data:{csrf_cookie:csrf_cookie}})
+			.done(function(data) {
+				// if fail to authenticate then load login screen
+				if(data.result) {
+					History.go("#home");
+				}
+			})
+			.fail(function(error) {
+			})
+			.send();
+			
+	}
+	
 	UI.Window.on("resize",function() {
 		console.log("window resize");
 		var w = window.innerWidth || document.documentElement.clientWidth || body.clientWidth,
 		h = window.innerHeight|| document.documentElement.clientHeight|| body.clientHeight;
 		
+		$(p.el.panelLogin,{
+			left: (w/2-200)+"px",
+			top : (h/2-320)+"px"
+		});
+		
+	});
+	
+});
+
+Router.addPage({name:"home",template:"base"},function(args,template) { // loaded presentation, communications panel
+	var self = this;
+	base_container.apply(this);
+	
+	var origin_lt_container = template.Container().elementGetContents("origin_lt");
+	var origin_lt = template.Container().elementGet("origin_lt");
+	origin_lt_container.elementsClear();
+	var w = window.innerWidth || document.documentElement.clientWidth || body.clientWidth,
+	h = window.innerHeight|| document.documentElement.clientHeight|| body.clientHeight;
+
+	var $ = BrowserTools.setStyle;
+	var $$ = BrowserTools.arraySetStyle;	
+	
+	var p = origin_lt_container.elementNewPacket(
+		"<div id=\"logout_btn\" style=\"position:absolute;left:"+(w-100)+"px;top:0px;padding:10px;background-color:#000;color:#fff;font-family:Impact;font-size:20px;cursor:pointer;\">"+
+		"<text value=\"logout\"/>"+
+		"</div>"
+	);
+	
+	$(p.el.logout_btn,{
+		events : {
+			click : function() { 
+				var csrf_cookie = localStorage.getItem("csrf-cookie");
+				var args = {csrf_cookie:csrf_cookie};
+				Import({url:"/json.logout",method:"get",json:true,data:args})
+					.done(function(data) {
+						if(data.result) {
+							localStorage.setItem("csrf-cookie",null);
+							delete localStorage["csrf-cookie"];
+							localStorage.setItem("username",null);
+						}
+						History.go("#login");
+					})
+					.fail(function(error) {
+					})
+					.send();
+			}
+		}
+	});
+	
+	UI.Window.on("resize",function() {
+		console.log("window resize");
+		var w = window.innerWidth || document.documentElement.clientWidth || body.clientWidth,
+		h = window.innerHeight|| document.documentElement.clientHeight|| body.clientHeight;
+		$(p.el.logout_btn,{
+			left : (w-100) + "px"
+		});
 		
 	});
 	
@@ -256,8 +440,26 @@ UI.init(function() {
 	select_resolution_mode();
 	*/
 	
-	
 	var start_page = "home";
+	var csrf_cookie = localStorage.getItem("csrf-cookie");
+	if(csrf_cookie == null || csrf_cookie == undefined || csrf_cookie == "undefined") {
+		start_page = "login";
+	} else {
+		Import({url:"/json.login",method:"get",json:true,data:{csrf_cookie:csrf_cookie}})
+			.done(function(data) {
+				// if fail to authenticate then load login screen
+				if(data.result) {
+					start_page = "home";
+				} else {
+					start_page = "login";
+				}
+			})
+			.fail(function(error) {
+			})
+			.send();
+			
+	}
+	
 	var hash = History.getHash();
 	var hash_arr = hash.split(":");
 	if(hash_arr.length>0) {

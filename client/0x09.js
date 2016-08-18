@@ -1335,13 +1335,35 @@ Class.define("CPU",{
 			login : function(credentials,done,fail) {
 				var self = this;
 				if(this.instance.mode=="remote") {
-					var users = credentials.split(" ");
-					
+					var cred = credentials.split(" ");
+					if(cred.length==4 && cred[0] == "username" && cred[2] == "password") {
+						var username = cred[1];
+						Hash.sha3_512_start();
+						var args = {
+							username : cred[1],
+							password : Hash.sha3_512_iter(cred[3]).data
+						};
+						Import({url:"/json.login",method:"get",json:true,data:args})
+							.done(function(data) {
+								if(data.result) {
+									__kernel_local.auth = true;
+								}
+								done(data);
+							})
+							.fail(function(error) {
+								var error = p.el.lblErrorMessage;
+								error.innerHTML = error.message;
+								error.style.display = "";
+							})
+							.send();
+					}
+					/*
 					var args = StringTools.toHex(JSON.stringify({ method : "auth", user : str, pass: str }));
 					Import({url:"/action",data : { data : args }, json: true })
 						.done(done)
 						.fail(fail)
 						.send();
+					*/
 				} else if(this.instance.mode=="local") {
 					// credentials file, hash of your rgistered password
 					Import({url:"/script/1_0xF.txt"}) 
@@ -3320,10 +3342,25 @@ Class.define("UI.Body",{ from : ["WithDOMElements"] , ctor :
 					
 					if(parts[0]=="login") {
 						parts.shift();
-						k.login(parts.join(" ")
-							,function(r) {
-								self.output_buffer.push(JSON.stringify(r));
-								
+						var j = parts.join(" ")
+						k.login(j
+							,function(data) {
+								//self.output_buffer.push(JSON.stringify(data));
+								//alert(JSON.stringify(data));
+								if(data.result) {
+									self.output_buffer.push("{\"result\":true}");
+									localStorage.setItem("csrf-cookie",data.csrf_cookie);
+									localStorage.setItem("username",parts[1]);
+									//document.getElementById("panelLogin").style.display = "none";
+									//document.getElementById("lblErrorMessage").style.display = "none";
+									//load_terminal();
+									//logout.style.display = "";
+									
+									// goto
+									History.go("#home");
+								} else {
+									self.output_buffer.push(JSON.stringify(data));
+								}
 								self.refresh();
 							}
 							,function(r) {
