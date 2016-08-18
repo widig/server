@@ -1307,3 +1307,4 @@
 [i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/json.logout", get: {"csrf_cookie":"86916a-d2c-647-41f-d450628ec"}]
 [i] 0.0.0.0:80 -> request [ method : get, url: "/favicon.ico", get: {}]
+[-] 0.0.0.0:80 -> 2016-08-18T14:13:01.331Z
